@@ -1,0 +1,1 @@
+C:\Users\dlee\Desktop\mongo-simple\obj\Debug\MongoSimple.csprojResolveAssemblyReference.cache
