@@ -1,1 +1,11 @@
 C:\Users\dlee\Desktop\mongo-simple\obj\Debug\MongoSimple.csprojResolveAssemblyReference.cache
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\mongo-simple.XML
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\mongo-simple.dll
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\mongo-simple.pdb
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\MongoDB.Bson.dll
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\MongoDB.Driver.dll
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\MongoDB.Bson.xml
+C:\Users\dlee\Desktop\mongo-simple\bin\Debug\MongoDB.Driver.xml
+C:\Users\dlee\Desktop\mongo-simple\obj\Debug\mongo-simple.dll
+C:\Users\dlee\Desktop\mongo-simple\obj\Debug\mongo-simple.pdb
