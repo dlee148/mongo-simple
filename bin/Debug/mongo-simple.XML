@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>mongo-simple</name>
+    </assembly>
+    <members>
+        <member name="T:MongoSimple.Actions">
+            <summary>
+            Constitutes common CRUD actions.
+            </summary>
+        </member>
+        <member name="F:MongoSimple.Actions.database">
+            <summary>Database instance - object specific.</summary>
+        </member>
+        <member name="F:MongoSimple.Actions.client">
+            <summary>Client instance - object specific.</summary>
+        </member>
+        <member name="M:MongoSimple.Actions.#ctor(System.String,System.String)">
+            <summary>
+            Establishes a connection to a Mongo database.
+            </summary>
+            <param name="connectionString">Default port for MongoDB is 27017.</param>
+            <param name="databaseName">Name of Mongo database.</param>
+        </member>
+        <member name="M:MongoSimple.Actions.FetchOne``1(System.String,System.String,System.String)">
+            <summary>
+            Fetches one document from the given collection matching the given key.
+            </summary>
+            <typeparam name="T">Model type to return.</typeparam>
+            <param name="collectionName">MongoDB collection name.</param>
+            <param name="key">Field by which to identify document.</param>
+            <param name="value">Value by which to identify document.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

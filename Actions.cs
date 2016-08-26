@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// http://twistedoakstudios.com/blog/Post1295_publish-your-net-library-as-a-nuget-package
+
 namespace MongoSimple
 {
     /// <summary>
