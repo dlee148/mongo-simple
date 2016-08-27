@@ -68,6 +68,13 @@ namespace MongoSimple
             return deserializedResult; 
         }
 
+        public void Edit(string collectionName, string query) {
+            // example
+            if (HasMultiplePositionalOperators(query)) {
+                query = ResolvePositionalOperators(collectionName, query, new Dictionary<string, string>());
+            }
+        }
+
         // Utility
 
         /// <summary>
