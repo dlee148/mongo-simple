@@ -1,0 +1,12 @@
+{
+  "key": "A",
+  "color": "blue",
+  "shelf": {
+    "nItems": 3,
+    "items": [
+      "spoon",
+      "book",
+      "pen"
+    ]
+  }
+}

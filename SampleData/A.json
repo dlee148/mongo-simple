@@ -1,0 +1,12 @@
+{
+  "key": "B",
+  "color": "red",
+  "shelf": {
+    "nItems": 3,
+    "items": [
+      "fork",
+      "paper",
+      "pencil"
+    ]
+  }
+}
