@@ -87,7 +87,7 @@ namespace Mongo_Simple
 			return RemoveHelper(collectionName, new BsonDocument(), true);
 		}
 
-		public bool RemoveHelper(string collectionName, FilterDefinition<BsonDocument> filter, bool many)
+		private bool RemoveHelper(string collectionName, FilterDefinition<BsonDocument> filter, bool many)
 		{
 			var collection = database.GetCollection<BsonDocument>(collectionName);
 
@@ -100,6 +100,26 @@ namespace Mongo_Simple
 				collection.DeleteOne(filter);
 			}
 
+			return true;
+		}
+
+		// Edit
+
+		public bool Unset<ValueType>(string collectionName, string key, ValueType value, string field)
+		{
+			var collection = database.GetCollection<BsonDocument>(collectionName);
+			var filter = Builders<BsonDocument>.Filter.Eq(key, value);
+			var update = Builders<BsonDocument>.Update.Unset(field);
+			collection.UpdateOne(filter, update);
+			return true;
+		}
+
+		public bool Set<ValueType, ValueType2>(string collectionName, string key, ValueType value, string field, ValueType2 toSet)
+		{
+			var collection = database.GetCollection<BsonDocument>(collectionName);
+			var filter = Builders<BsonDocument>.Filter.Eq(key, value);
+			var update = Builders<BsonDocument>.Update.Set(field, toSet);
+			collection.UpdateOne(filter, update);
 			return true;
 		}
     }
