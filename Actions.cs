@@ -1,5 +1,3 @@
-﻿using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -12,6 +10,8 @@ namespace Mongo_Simple
     {
         protected static IMongoDatabase database;
         protected static IMongoClient client;
+
+		// C'tors
 
 		public MongoSimple(string databaseName)
 		{
@@ -49,31 +49,58 @@ namespace Mongo_Simple
             return deserializedResult; 
         }
 
-        public void Edit(string collectionName, string query) {
-            // example
-            if (HasMultiplePositionalOperators(query)) {
-                query = ResolvePositionalOperators(collectionName, query, new Dictionary<string, string>());
-            }
-        }
+		// Insert
 
-        // Utility
+		public bool InsertOne<T>(string collectionName, T toInsert)
+		{
+			var collection = database.GetCollection<BsonDocument>(collectionName);
+			collection.InsertOne(toInsert.ToBsonDocument());
+			return true;
+		}
 
-        public bool HasMultiplePositionalOperators(string query)
-        {
-            return query.Count(x => x == '$') > 1;
-        }
+		public bool InsertMany<T>(string collectionName, T[] toInsert)
+		{
+			var collection = database.GetCollection<BsonDocument>(collectionName);
 
-        public string ResolvePositionalOperators(string collectionName, string query, Dictionary<string, string> ids)
-        {
-            var collection = database.GetCollection<BsonDocument>(collectionName);
-            var filter = Builders<BsonDocument>.Filter.Eq(ids.First().Key, ids.First().Value);
-            ids.Remove(ids.First().Key);
+			foreach (T item in toInsert)
+			{
+				collection.InsertOne(item.ToBsonDocument());
+			}
 
-            // There's going to be a lot of sketchy stuff that goes down here
-            // and it would be prudent to take some time to look at it
-            // http://stackoverflow.com/questions/2905187/accessing-object-property-as-string-and-setting-its-value
+			return true;
+		}
 
-            return "Help me.";
-        }
+		// Remove
+
+		public bool RemoveOne<ValueType>(string collectionName, string key, ValueType value)
+		{
+			return RemoveHelper(collectionName, Builders<BsonDocument>.Filter.Eq(key, value), false);
+		}
+
+		public bool RemoveMany<ValueType>(string collectionName, string key, ValueType value)
+		{
+			return RemoveHelper(collectionName, Builders<BsonDocument>.Filter.Eq(key, value), true);
+		}
+
+		public bool RemoveAll(string collectionName)
+		{
+			return RemoveHelper(collectionName, new BsonDocument(), true);
+		}
+
+		public bool RemoveHelper(string collectionName, FilterDefinition<BsonDocument> filter, bool many)
+		{
+			var collection = database.GetCollection<BsonDocument>(collectionName);
+
+			if (many)
+			{
+				collection.DeleteMany(filter);
+			}
+			else
+			{
+				collection.DeleteOne(filter);
+			}
+
+			return true;
+		}
     }
 }
