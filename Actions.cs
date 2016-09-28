@@ -2,13 +2,21 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
-// http://twistedoakstudios.com/blog/Post1295_publish-your-net-library-as-a-nuget-package
-
 namespace Mongo_Simple
 {
+	/// <summary>
+	/// A simpler way to use MongoDB.
+	/// </summary>
 	public class MongoSimple
     {
+		/// <summary>
+		/// An instance of a MongoDB database.
+		/// </summary>
         protected static IMongoDatabase database;
+
+		/// <summary>
+		/// An instance of a MongoDB client.
+		/// </summary>
         protected static IMongoClient client;
 
 		// C'tors

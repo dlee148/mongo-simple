@@ -1,0 +1,8 @@
+/Users/Daniel/Desktop/mongo-simple/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Daniel/Desktop/mongo-simple/bin/Debug/mongo-simple.dll.mdb
+/Users/Daniel/Desktop/mongo-simple/bin/Debug/mongo-simple.dll
+/Users/Daniel/Desktop/mongo-simple/obj/Debug/mongo-simple.dll
+/Users/Daniel/Desktop/mongo-simple/obj/Debug/mongo-simple.dll.mdb
+/Users/Daniel/Desktop/mongo-simple/bin/Debug/MongoDB.Bson.dll
+/Users/Daniel/Desktop/mongo-simple/bin/Debug/MongoDB.Driver.Core.dll
+/Users/Daniel/Desktop/mongo-simple/bin/Debug/MongoDB.Driver.dll
