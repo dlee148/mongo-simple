@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MongoSimple</id>
+    <version>0.0.2</version>
+    <title>MongoSimple</title>
+    <authors>Daniel Lee</authors>
+    <owners>laniel-dee</owners>
+    <projectUrl>http://github.com/dlee148/mongo-simple</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An easier way to integrate MongoDB.</description>
+    <releaseNotes>Bare-bones, but functional version..</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Mongo MongoDB Database DB Simple Easy Cats</tags>
+    <dependencies>
+      <dependency id="MongoDB.Bson" version="2.3.0" />
+      <dependency id="MongoDB.Driver" version="2.3.0" />
+      <dependency id="MongoDB.Driver.Core" version="2.3.0" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin/Debug/*.dll" target="lib" />
+    <file src="bin/Debug/*.xml" target="lib" />
+  </files>
+</package>
