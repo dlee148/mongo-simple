@@ -51,14 +51,13 @@ namespace Mongo_Simple
 
 		// Insert
 
-		public bool InsertOne<T>(string collectionName, T toInsert)
+		public void InsertOne<T>(string collectionName, T toInsert)
 		{
 			var collection = database.GetCollection<BsonDocument>(collectionName);
 			collection.InsertOne(toInsert.ToBsonDocument());
-			return true;
 		}
 
-		public bool InsertMany<T>(string collectionName, T[] toInsert)
+		public void InsertMany<T>(string collectionName, T[] toInsert)
 		{
 			var collection = database.GetCollection<BsonDocument>(collectionName);
 
@@ -66,8 +65,6 @@ namespace Mongo_Simple
 			{
 				collection.InsertOne(item.ToBsonDocument());
 			}
-
-			return true;
 		}
 
 		// Remove
@@ -90,37 +87,27 @@ namespace Mongo_Simple
 		private bool RemoveHelper(string collectionName, FilterDefinition<BsonDocument> filter, bool many)
 		{
 			var collection = database.GetCollection<BsonDocument>(collectionName);
-
-			if (many)
-			{
-				collection.DeleteMany(filter);
-			}
-			else
-			{
-				collection.DeleteOne(filter);
-			}
-
-			return true;
+			DeleteResult result = many ? collection.DeleteMany(filter) : collection.DeleteOne(filter);
+			return result.DeletedCount != 0;
 		}
 
 		// Edit
 
 		public bool Unset<ValueType>(string collectionName, string key, ValueType value, string field)
 		{
-			var collection = database.GetCollection<BsonDocument>(collectionName);
-			var filter = Builders<BsonDocument>.Filter.Eq(key, value);
-			var update = Builders<BsonDocument>.Update.Unset(field);
-			collection.UpdateOne(filter, update);
-			return true;
+			return EditHelper(collectionName, Builders<BsonDocument>.Filter.Eq(key, value), Builders<BsonDocument>.Update.Unset(field));
 		}
 
 		public bool Set<ValueType, ValueType2>(string collectionName, string key, ValueType value, string field, ValueType2 toSet)
 		{
+			return EditHelper(collectionName, Builders<BsonDocument>.Filter.Eq(key, value), Builders<BsonDocument>.Update.Set(field, toSet));
+		}
+
+		private bool EditHelper(string collectionName, FilterDefinition<BsonDocument> filter, UpdateDefinition<BsonDocument> update)
+		{
 			var collection = database.GetCollection<BsonDocument>(collectionName);
-			var filter = Builders<BsonDocument>.Filter.Eq(key, value);
-			var update = Builders<BsonDocument>.Update.Set(field, toSet);
-			collection.UpdateOne(filter, update);
-			return true;
+			var result = collection.UpdateOne(filter, update);
+			return result.ModifiedCount != 0;
 		}
     }
 }
